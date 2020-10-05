@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>repl.it</title>
+        <link href="style.css" rel="stylesheet" type="text/css" />
+    </head>
+
+    <body>
+
+        <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-database.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-auth.js"></script>
+
+
+        <div id="mainBody">
+            <button onclick="signOut()">Sign Out</button>
+        </div>
+
+        <script src="login.js"></script>
+
+        <div id="q1">
+            <h1>Name Your Country</h1>
+            <br>
+            <input type="text" id="country" placeholder="Country Name"></button>
+            <button onclick="setName()">Set Name</button>
+        </div>
+
+        <div id="q2" style="display: none;">
+            <h1>Set Your Economic System</h1>
+            <br>
+            <input type="radio" id="ecosys" name="econsys" value="left">
+            <label for="left">Left</label><br>
+            <input type="radio" id="ecosys" name="econsys" value="neut">
+            <label for="neut">Neutral</label><br>
+            <input type="radio" id="ecosys" name="econsys" value="right">
+            <label for="right">Right</label>
+            <button onclick="setEcoSys()">Set</button>
+            
+            
+        </div>
+
+        <div id="q3" style="display: none;">
+            <h1>Set Your Political Philosophy</h1>
+            <br>
+            <input type="radio" id="polphil" name="pilphos" value="Dict">
+            <label for="Democracy">Democracy</label><br>
+            <input type="radio" id="polphil" name="pilphos" value="Demo">
+            <label for="Dictatorship">Dictatorship</label><br>
+            <button onclick="setPilPhil()">Set</button>
+        </div>
+
+        <script src="setupscript.js"></script>
+    </body>
+</html>
