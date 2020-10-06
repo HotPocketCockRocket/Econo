@@ -1,20 +1,15 @@
 
-var firebaseConfig = {
-    apiKey: "AIzaSyA885hREVDaEQj26_I1gLSgjmtfu9LwZVE",
-    authDomain: "econo-22b24.firebaseapp.com",
-    databaseURL: "https://econo-22b24.firebaseio.com",
-    projectId: "econo-22b24",
-    storageBucket: "econo-22b24.appspot.com",
-    messagingSenderId: "358567154682",
-    appId: "1:358567154682:web:4d9fe622d794355a3f0a43"
-};
-
-firebase.initializeApp(firebaseConfig);
-
+function getUserName()
+{
+    const email = window.localStorage.getItem("email")
+    var username = email.slice(0, email.indexOf("@"))
+    return(username)
+}
 function setup(name, polphil, econsys)
 {
 
     email = window.localStorage.getItem("email")
+    console.log(name, econsys, polphil, email)
     
     firebase.database().ref("Countries/"+name).set({
         name: name,
@@ -23,6 +18,12 @@ function setup(name, polphil, econsys)
         founder: email
         
     })
+
+
+    
+    
+
+
     alert("All Set Up!")
     move()
 
@@ -68,7 +69,14 @@ function setEcoSys()
 function setPilPhil()
 {
     window.polphil= document.getElementById("polphil").value
-    
-    
-    setup(window.landname, window.polphil, window.ecosys)
+    var username = getUserName().toString()
+    alert(username)
+    firebase.database().ref("Users/+username").set({
+        landName: "bruh",
+        email: "bruh"
+
+        
+        
+    })
+    //setup(window.landname, window.polphil, window.ecosys)
 }
