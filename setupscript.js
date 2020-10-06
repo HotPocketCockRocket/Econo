@@ -2,7 +2,7 @@
 function getUserName()
 {
     const email = window.localStorage.getItem("email")
-    var username = email.slice(0, email.indexOf("@"))
+    var username = email.slice(0, email.indexOf("@")).replace(".", "")
     return(username)
 }
 function setup(name, polphil, econsys)
@@ -71,12 +71,14 @@ function setPilPhil()
     window.polphil= document.getElementById("polphil").value
     var username = getUserName().toString()
     alert(username)
-    firebase.database().ref("Users/+username").set({
+    firebase.database().ref("Users/" + username).set({
         landName: "bruh",
         email: "bruh"
 
         
         
     })
+
+    
     //setup(window.landname, window.polphil, window.ecosys)
 }
