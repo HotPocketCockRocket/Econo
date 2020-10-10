@@ -14,49 +14,57 @@
         <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-auth.js"></script>
 
 
-        <div id="mainBody">
-            <button onclick="signOut()">Sign Out</button>
-            <br>
-            <button onclick="window.location.href='setup.html'">Set Up</button>
-            <br>
-            <br>
-            <br>
-            <br>
+        <div class="mainBody">
 
-            <div id="information">
-                <h1>Stats:</h1>
-                <h4 id="population">Population</h2>
-                <h4 id="gdp">GDP</h2>
-                <h4 id="povertyLevel">Poverty Level</h2>
-                <h4 id="currencyValue">Value Of currency</h2>
-                <h4 id="Allies">Allies</h2>
+            <div id="side1">
+                <div id="information" class="nice-box">
+                    <h1>Stats:</h1>
+                    <h4 id="population">Population</h2>
+                    <h4 id="gdp">GDP</h2>
+                    <h4 id="povertyLevel">Poverty Level</h2>
+                    <h4 id="currencyValue">Value Of currency</h2>
+                    <h4 id="Allies">Allies</h2>
+                </div>
+            
+
+                <br>
+                <br>
+
+
+                <div id="actionButtons" class="nice-box">
+
+                    <button>Enforce Laws</button>
+                    <button>Align With Another Country</button>
+                    
+                    <br>
+                    <br>
+                    <br>
+                    <button>Declare War</button>
+                    
+                    <button>Use nuclear weapons</button>
+                    <br>
+                    <br>
+                    <br>
+                    
+                    <button>Attempt an assasination of a leader</button>
+                    <button>Advertise Country</button> 
+                </div>
             </div>
-            <!-- <div id="leaderBoard">
-                
 
-            </div>  -->
+            <div id="side2" >
 
-            <div id="actionButtons">
-                <button>Enforce Laws</button>
-                <button>Align With Another Country</button>
+                <div id="leaderBoard" class="nice-box">
+                    
                 
-                <br>
-                <br>
-                <br>
-                <button>Declare War</button>
-                
-                <button>Use nuclear weapons</button>
-                <br>
-                <br>
-                <br>
-                
-                <button>Attempt an assasination of a leader</button>
-                <button>Advertise Country</button> 
+                </div>
             </div>
+
         </div>
 
         <script src="login.js"></script>
         <script src="main.js"></script>
+        
+        
 
         
         

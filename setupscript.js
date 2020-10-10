@@ -8,29 +8,40 @@ function getUserName()
 function setup(name, polphil, econsys)
 {
 
+    var username = getUserName().toString()
     email = window.localStorage.getItem("email")
     console.log(name, econsys, polphil, email)
+    window.localStorage.setItem("landName", name)
+    document.getElementById("moveButton").style.display = "block";
+
+
+
+    firebase.database().ref("Users/" + username).set({
+        landName: name,
+        email: window.localStorage.getItem("email"),
+        created: true
+    })
+
+    
     
     firebase.database().ref("Countries/"+name).set({
         name: name,
         econsys: econsys,
         polphil: polphil,
         founder: email
-        
     })
 
+    firebase.database().ref("Countries/"+name+"/stats").set({
+        Population: 10000,
+        GDPC: 5000,
+        PovertyLevel: medium,
+        ValOC: 0.5
+    })
 
-    
-    
-
-
-    alert("All Set Up!")
-    move()
-
-    
 }
-function move()
-{
+
+
+function move(){
     window.location.href="home.html"
 }
 
@@ -69,16 +80,5 @@ function setEcoSys()
 function setPilPhil()
 {
     window.polphil= document.getElementById("polphil").value
-    var username = getUserName().toString()
-    alert(username)
-    firebase.database().ref("Users/" + username).set({
-        landName: "bruh",
-        email: "bruh"
-
-        
-        
-    })
-
-    
-    //setup(window.landname, window.polphil, window.ecosys)
+    setup(window.landname, window.polphil, window.ecosys)   
 }

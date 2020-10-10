@@ -1,6 +1,7 @@
 
 
 
+
 var firebaseConfig = {
     apiKey: "AIzaSyA885hREVDaEQj26_I1gLSgjmtfu9LwZVE",
     authDomain: "econo-22b24.firebaseapp.com",
@@ -13,6 +14,14 @@ var firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
+let abt =  document.getElementById("SubmitLogin")
+
+abt.addEventListener('click', () => 
+{
+    login()
+})
+
+
 function show(item)
 {
     document.getElementById(item).style.display = "block";
@@ -21,28 +30,6 @@ function hide(item)
 {
     document.getElementById(item).style.display = "none";
 }
-
-function showSignUp()
-{
-    show("signUpPage")
-    hide("buttonWrapper")
-}
-
-function showLogin()
-{
-    show("loginPage")
-    hide("buttonWrapper")
-}
-
-function back()
-{
-    hide("loginPage")
-    hide("signUpPage")
-    show("buttonWrapper")
-}
-
-hide("loginPage")
-hide("signUpPage")
 
 
 
@@ -101,7 +88,7 @@ function signUp(){
     var password = document.getElementById("spassword").value;
     
 
-    createUserId(window.email)
+    
       
     firebase.auth().createUserWithEmailAndPassword(window.email, password).catch(function(error) {
     // Handle Errors here.
