@@ -32,10 +32,11 @@ function setup(name, polphil, econsys)
     })
 
     firebase.database().ref("Countries/"+name+"/stats").set({
-        Population: 10000,
+        population: 10000,
         GDPC: 5000,
-        PovertyLevel: medium,
-        ValOC: 0.5
+        PO: 0.3,
+        cval: 0.5,
+        Allies: "none"
     })
 
 }
