@@ -23,7 +23,7 @@ abt.addEventListener('click', () =>
 
 let abt2 = document.getElementById("submitSignUp")
 
-abt.addEventListener("click", () =>
+abt2.addEventListener("click", () =>
 {
     signUp()
 })
