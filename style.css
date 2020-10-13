@@ -30,6 +30,26 @@
 }
 
 
+input{
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+}
+
+input:focus ~ label, 
+input:valid ~ label
+{
+    top: -20px;
+    left: 0;
+    font-size: 12px;
+}
+
 button {
     color: white;
     background-color: transparent;
@@ -290,4 +310,14 @@ body {
     top:30px;
     right: 30px;
     writing-mode: horizontal-tb;  
+}
+
+.chatOutput
+{
+    
+    color: white;
+    height: 250px;
+    word-wrap: break-word;
+    overflow:hidden;
+
 }

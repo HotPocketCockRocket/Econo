@@ -50,7 +50,7 @@ function enforce()
     //token
 }
 
-function allign()
+function align()
 {
     //token
 }
@@ -188,6 +188,89 @@ function leaderBoard()
     })
 }
 
+function sendChatMessage() 
+{
+    window.message = document.getElementById("messageInput").value
+    if (window.message == "") {
+        return
+    }
+
+    var today = new Date();
+    var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    window.dateTime = date + ' ' + time;
+
+
+
+    firebase.database().ref("Chat/MessageIDs/").once('value', function (snapshot) {
+        document.getElementById('messageInput').value = ''
+        snapshot.forEach(function (childSnapshot) {
+            var childKey = childSnapshot.key;
+            var childData = childSnapshot.val()
+
+
+            var localMessageID = childData + 1;
+
+
+
+            firebase.database().ref("Chat/MessageIDs/").set
+            ({
+                Messageid: localMessageID
+            })
+
+            firebase.database().ref("Chat/Messages/" + localMessageID).set
+            ({
+                Message: window.message,
+                User: getUserName(),
+                Time: window.dateTime
+            });
+
+
+        })
+    })
+}
+
+function chatUpdate() 
+{
+    var textarea = document.getElementById('chatOutput');
+    textarea.scrollTop = textarea.scrollHeight;
+    
+    var output = "";
+    firebase.database().ref('Chat/MessageIDs/').once('value', function (snapshot) {
+        snapshot.forEach(function (childSnapshot) {
+            firebase.database().ref("Chat/Messages").once('value', function (snapshot) {
+                snapshot.forEach(function (childSnapshot) {
+                    var childKey = childSnapshot.key;
+                    var childData = childSnapshot.val();
+
+                    output += "\n(" + childData["User"] + "): " + childData['Message']+"<br>";
+                    window.latestmessageuser = childData["User"]
+                    window.latestmessage = childData["Message"]
+
+                })
+
+                if (window.prevmessage != output && getUserName() != window.latestmessageuser) {
+                    var notify = new Notification
+                        (window.latestmessageuser,
+                            {
+                                body: window.latestmessage 
+                            });
+                    setTimeout(notify.close.bind(notify), 2000);
+                }
+
+                window.prevmessage = output
+                document.getElementById("chatOutput").innerHTML = output;
+            })
+        });
+    })
+}
+
+function update()
+{
+    getSelfData()
+    chatUpdate()
+}
+
 if (window.localStorage.getItem("firstTime") != true)
 {
     checkFirstSetup()
@@ -198,5 +281,5 @@ getSelfData()
 
 
 leaderBoard()
-var inte = setInterval(getSelfData, 1000)
+var inte = setInterval(update, 1000)
 

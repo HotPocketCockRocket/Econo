@@ -21,6 +21,12 @@ abt.addEventListener('click', () =>
     login()
 })
 
+let abt2 = document.getElementById("submitSignUp")
+
+abt.addEventListener("click", () =>
+{
+    signUp()
+})
 
 function show(item)
 {

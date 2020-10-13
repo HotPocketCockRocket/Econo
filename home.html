@@ -3,8 +3,9 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
-        <title>repl.it</title>
+        <title>Econo_Online</title>
         <link href="style.css" rel="stylesheet" type="text/css" />
+
     </head>
 
     <body>
@@ -32,17 +33,16 @@
                     <div>
 
                         <button>Enforce Laws</button>
-                        <button>Align With Another Country</button>
-                    
+                        <button>Align With Another Country</button>               
                         <button>Declare War</button>
+                        <button onclick = "advertiseCountry()">Advertise Country</button>
                         
-                        <button>Use nuclear weapons</button>
-                    
-                
-                
-                        
-                        <button>Attempt an assasination of a leader</button>
-                        <button onclick = "advertiseCountry()">Advertise Country</button> 
+
+                        <div style="display: none;">
+                            <button>Use nuclear weapons</button>   
+                            <button>Attempt an assasination of a leader</button>
+                        </div>
+                         
                     </div>
                 </div>
             </div>
@@ -59,7 +59,14 @@
                 <br>
                 <br>
                 <div id="chat" class="nice-box">
-                    <button class="loading"/>
+                    <h1>Chat</h1>
+                    
+                    <div class="chatOutput" id="chatOutput"><button class="loading"></button></div>
+                    <input autocomplete="off" id="messageInput" type="text" placeholder="Message" onkeydown="if (event.keyCode == 13) document.getElementById('sendChatMessage').click()"></input>
+                    <button id="sendChatMessage" onclick="sendChatMessage()">Send</button>
+                    
+                        
+                    
                 </div>
 
             </div>
