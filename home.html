@@ -36,6 +36,7 @@
                         <button>Align With Another Country</button>               
                         <button>Declare War</button>
                         <button onclick = "advertiseCountry()">Advertise Country</button>
+                        <button onclick="signOut()">Sign Out</button>
                         
 
                         <div style="display: none;">
@@ -63,7 +64,7 @@
                     
                     <div class="chatOutput" id="chatOutput"><button class="loading"></button></div>
                     <input autocomplete="off" id="messageInput" type="text" placeholder="Message" onkeydown="if (event.keyCode == 13) document.getElementById('sendChatMessage').click()"></input>
-                    <button id="sendChatMessage" onclick="sendChatMessage()">Send</button>
+                    <button id="sendChatMessage" onclick="sendChatMessage()" style="display: none;">Send</button>
                     
                         
                     

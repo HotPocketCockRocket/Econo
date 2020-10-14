@@ -18,7 +18,7 @@ let abt =  document.getElementById("SubmitLogin")
 
 abt.addEventListener('click', () => 
 {
-    login()
+    signUp()
 })
 
 

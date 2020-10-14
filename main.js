@@ -113,7 +113,7 @@ function getSelfData()
 
 
 
-        var presentableData = "<h1>Statistics</h1><h4>Population: "+ pop +"</h4><h4>GDP Per Capita: " + gdpc + "</h4><h4>Currency Value: "+cval+"</h4><h4>Poverty Level: " + pov + "</h4><h4>Allies: " + allies        
+        var presentableData = "<h1>Stats:</h1><h4>Population: "+ pop +"</h4><h4>GDP Per Capita: " + gdpc + "</h4><h4>Currency Value: "+cval+"</h4><h4>Poverty Level: " + pov + "</h4><h4>Allies: " + allies        
         
         document.getElementById("information").innerHTML = presentableData
         
@@ -178,13 +178,10 @@ function leaderBoard()
      
         snapshot.forEach(function(childSnapshot)
         {
-            var key = childSnapshot.key
             
-            firebase.database().ref("Countries/"+key+"/stats").once('value', function(snapshot)
-            {
-
-
-            })  
+            firebase.database().ref("Countries/"+childSnapshot.key)
+            
+            
 
         })
 
@@ -203,12 +200,18 @@ function sendChatMessage()
     var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
     window.dateTime = date + ' ' + time;
 
+
+
     firebase.database().ref("Chat/MessageIDs/").once('value', function (snapshot) {
         document.getElementById('messageInput').value = ''
         snapshot.forEach(function (childSnapshot) {
             var childKey = childSnapshot.key;
             var childData = childSnapshot.val()
+
+
             var localMessageID = childData + 1;
+
+
 
             firebase.database().ref("Chat/MessageIDs/").set
             ({
