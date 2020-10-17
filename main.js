@@ -1,3 +1,5 @@
+Notification.requestPermission()
+
 function getUserName()
 {
     const email = window.localStorage.getItem("email")
@@ -24,10 +26,72 @@ function getAllCurrentData()
     })
 }
 
-
-function getProperties()
+function checkCountryResearch()
 {
-    land = window.localStorage.getItem("landName")    
+    land = window.localStorage.getItem("landName")
+    firebase.database().ref("Countries/"+land+"/research").once('value', function(snapshot)
+    {
+        snapshot.forEach(function(childSnapshot)        
+        {
+            // childSnapshot.val()
+        })
+    })
+}
+
+function checkEvents()
+{
+    land = window.localStorage.getItem("landName")
+    firebase.database().ref("Countries/"+land+"events/amount/num").once('value', function(snapshot))
+    {
+        if (snapshot.val() != 0)
+        {
+            getEvents()
+        }   
+    }
+}
+
+function eventAlign(n)
+{
+
+}
+
+function eventDecWar(n)
+{
+
+}
+
+function eventNucBomb(n)
+{
+
+}
+
+function eventProtest(n)
+{
+
+}
+
+function eventAssassination(user)
+{
+
+}
+
+function categoriseEvent(event)
+{
+
+    
+}
+
+function getEvents()
+{
+    land = window.localStorage.getItem("landName")
+    firebase.database().ref("Countries/"+land+"/events/events").once('value', function(snapshot)
+    {
+        snapshot.forEach(function(childSnapshot)
+        {
+            categoriseEvent(childSnapshot.val())
+        })
+
+    })
 }
 
 function useNuclearWeapons()
@@ -115,7 +179,7 @@ function getSelfData()
 
         var presentableData = "<h1>Stats:</h1><h4>Population: "+ pop +"</h4><h4>GDP Per Capita: " + gdpc + "</h4><h4>Currency Value: "+cval+"</h4><h4>Poverty Level: " + pov + "</h4><h4>Allies: " + allies        
         
-        document.getElementById("information").innerHTML = presentableData
+        document.getElementById("information").innerHTML = presentableData;
         
     })
 }
@@ -175,16 +239,15 @@ function leaderBoard()
 {
     firebase.database().ref("Countries").once('value', function(snapshot)
     {
-     
+        var populationli = {}
         snapshot.forEach(function(childSnapshot)
         {
-            
-            firebase.database().ref("Countries/"+childSnapshot.key)
-            
-            
-
+            var key = childSnapshot.key
+            firebase.database().ref("Countries/"+childSnapshot.key+"/stats/population").once('value', function(snapshot)
+            {
+                populationli.push({key: snapshot.val()})
+            })
         })
-
     })
 }
 
@@ -202,7 +265,7 @@ function sendChatMessage()
 
 
 
-    firebase.database().ref("Chat/MessageIDs/").once('value', function (snapshot) {
+    firebase.database().ref("Chat/LocalRoom/MessageIDs/").once('value', function (snapshot) {
         document.getElementById('messageInput').value = ''
         snapshot.forEach(function (childSnapshot) {
             var childKey = childSnapshot.key;
@@ -236,9 +299,9 @@ function chatUpdate()
     textarea.scrollTop = textarea.scrollHeight;
     
     var output = "";
-    firebase.database().ref('Chat/MessageIDs/').once('value', function (snapshot) {
+    firebase.database().ref('Chat/LocalRoom/MessageIDs/').once('value', function (snapshot) {
         snapshot.forEach(function (childSnapshot) {
-            firebase.database().ref("Chat/Messages").once('value', function (snapshot) {
+            firebase.database().ref("Chat/LocalRoom/Messages").once('value', function (snapshot) {
                 snapshot.forEach(function (childSnapshot) {
                     var childKey = childSnapshot.key;
                     var childData = childSnapshot.val();
@@ -280,6 +343,6 @@ localStorageWriteLandName()
 getSelfData()
 
 
-leaderBoard()
+// leaderBoard()
 var inte = setInterval(update, 1000)
 
